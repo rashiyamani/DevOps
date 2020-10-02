@@ -11,7 +11,15 @@ pipeline {
     git_commit_author_name = ''
     git_commit_author_email = ''
   }
-
+ stages {
+      stage('Build') {
+         steps {
+            sh '''
+               docker images -f dangling=true -q | xargs docker rmi || true
+               mvn clean package
+               '''
+         }
+      }
 #  stages {
 #
 #    // Build
@@ -61,8 +69,8 @@ pipeline {
 #        sh "echo 'Run Acceptance Tests'"
 #      }
 #    }
-#3
-#  }
+#
+  }
   post {
     success {
       sh "echo 'Send mail on success'"
