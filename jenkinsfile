@@ -20,20 +20,6 @@ pipeline {
                '''
          }
       }
-#  stages {
-#
-#    // Build
-#    stage('Build') {
-#      agent {
-#        label 'node'
-#      }
-#      steps {
-#        deleteDir()
-#        checkout scm
-#      }
-#
-#    }
-#
 #    // Static Code Analysis
 #    stage('Static Code Analysis') {
 #      agent {
