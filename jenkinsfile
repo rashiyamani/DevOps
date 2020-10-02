@@ -1,70 +1,45 @@
-#!groovy
-
 pipeline {
-
-  agent any
-
-  environment {
-    git_commit_message = ''
-    git_commit_diff = ''
-    git_commit_author = ''
-    git_commit_author_name = ''
-    git_commit_author_email = ''
-  }
- stages {
-      stage('Build') {
-         steps {
-            sh '''
-               docker images -f dangling=true -q | xargs docker rmi || true
-               mvn clean package
-               '''
-         }
-      }
-    // Static Code Analysis
-    stage('Static Code Analysis') {
-      agent {
-        echo "test"
-      }
-      steps {
-        deleteDir()
-        checkout scm
-        sh "echo 'Run Static Code Analysis'"
-      }
-    }
-
-    // Unit Tests
-    stage('Unit Tests') {
-      agent {
-        echo "test"
-      }
-      steps {
-        deleteDir()
-        checkout scm
-        sh "echo 'Run Unit Tests'"
-      }
-    }
-
-    // Acceptance Tests
-    stage('Acceptance Tests') {
-      agent {
-        echo "test"
-      }
-      steps {
-        deleteDir()
-        checkout scm
-        sh "echo 'Run Acceptance Tests'"
-      }
-    }
-
-  }
-  post {
-    success {
-      sh "echo 'Send mail on success'"
-      // mail to:"me@example.com", subject:"SUCCESS: ${currentBuild.fullDisplayName}", body: "Yay, we passed."
-    }
-    failure {
-      sh "echo 'Send mail on failure'"
-      // mail to:"me@example.com", subject:"FAILURE: ${currentBuild.fullDisplayName}", body: "Boo, we failed."
-    }
-  }
+         agent any
+         stages {
+                 stage('One') {
+                 steps {
+                     echo 'Hi, this is Zulaikha from edureka'
+                 }
+                 }
+                 stage('Two') {
+                 steps {
+                    input('Do you want to proceed?')
+                 }
+                 }
+                 stage('Three') {
+                 when {
+                       not {
+                            branch "master"
+                       }
+                 }
+                 steps {
+                       echo "Hello"
+                 }
+                 }
+                 stage('Four') {
+                 parallel { 
+                            stage('Unit Test') {
+                           steps {
+                                echo "Running the unit test..."
+                           }
+                           }
+                            stage('Integration test') {
+                              agent {
+                                    docker {
+                                            reuseNode true
+                                            image 'ubuntu'
+                                           }
+                                    }
+                              steps {
+                                echo "Running the integration test..."
+                              }
+                           }
+                           }
+                           }
+              }
 }
