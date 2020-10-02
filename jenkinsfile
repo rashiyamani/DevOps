@@ -1,39 +1,42 @@
-pipeline {
+peline {
          agent any
          stages {
-                 stage('One') {
+                 stage('Build') {
                  steps {
-                     echo 'Hi, this is Zulaikha from edureka'
+                     echo 'Hi, GeekFlare. Starting to build the App.'
                  }
                  }
-                 stage('Two') {
+                 stage('Test') {
                  steps {
                     input('Do you want to proceed?')
                  }
                  }
-                 stage('Three') {
-                 when {
-                       not {
-                            branch "master"
-                       }
-                 }
-                 steps {
-                       echo "Hello"
-                 }
-                 }
-                 stage('Four') {
-                 parallel { 
-                            stage('Unit Test') {
+                 stage('Deploy') {
+                 parallel {
+                            stage('Deploy start ') {
                            steps {
-                                echo "Running the unit test..."
+                                echo "Start the deploy .."
                            }
                            }
-                            stage('Integration test') {
+                            stage('Deploying now') {
+                            agent {
+                                    docker {
+                                            reuseNode true
+                                            image ‘nginx’
+                                           }
+                                    }
+
                               steps {
-                                echo "Running the integration test..."
+                                echo "Docker Created"
                               }
                            }
                            }
                            }
+                 stage('Prod') {
+                     steps {
+                                echo "App is Prod Ready"
+                              }
+
               }
+}
 }
