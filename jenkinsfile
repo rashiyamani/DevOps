@@ -22,7 +22,7 @@ pipeline {
                             agent {
                                     docker {
                                             reuseNode true
-                                            image ‘nginx’
+                                            image  nginx:latest
                                            }
                                     }
 
