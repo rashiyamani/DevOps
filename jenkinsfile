@@ -20,9 +20,7 @@ pipeline {
                            }
                             stage('Deploying now') {
                             agent {
-		                   docker { image 'nginx:latest' }
-docker tag nginx  074002960123.dkr.ecr.us-east-1.amazonaws.com/nginx:latest
-docker push 074002960123.dkr.ecr.us-east-1.amazonaws.com/nginx:latest
+		             docker { image 'nginx:latest' 'tag nginx:latest  074002960123.dkr.ecr.us-east-1.amazonaws.com/nginx:latest' 'push 074002960123.dkr.ecr.us-east-1.amazonaws.com/nginx:latest' }
                                     }
 
                               steps {
