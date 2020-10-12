@@ -24,11 +24,9 @@ pipeline {
                                  sh 'build.sh' 
                                } 
 
-
                               steps {
                                 echo "Docker Created"
                               }
-                           }
                            }
                            }
                  stage('Prod') {
