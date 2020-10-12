@@ -19,9 +19,7 @@ pipeline {
                            }
                            }
                             stage('Deploying now') {
-                            agent {
-                                   sh build.sh
-                                    }
+                                   sh 'build.sh'
 
                               steps {
                                 echo "Docker Created"
