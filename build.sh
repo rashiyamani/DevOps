@@ -3,7 +3,7 @@
 echo "Shell started"
 echo "==========================="
 
-APP_NAME=rashiyatest
+APP_NAME=rashiya100test
 ECS_REPOSITORY=074002960123.dkr.ecr.us-east-1.amazonaws.com
 BUILD_NUMBER=12
 #------------------------------------------------------------------------------
