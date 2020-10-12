@@ -15,7 +15,7 @@ pipeline {
             steps {
                 echo "test 3"
                script {
-                 sh 'build.sh'
+                 sh build.sh
                  }
             }
         }
