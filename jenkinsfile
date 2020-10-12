@@ -19,7 +19,11 @@ pipeline {
                            }
                            }
                             stage('Deploying now') {
-                                   sh 'build.sh'
+                               
+                             steps { 
+                                 sh 'build.sh' 
+                               } 
+
 
                               steps {
                                 echo "Docker Created"
