@@ -21,6 +21,8 @@ pipeline {
                             stage('Deploying now') {
                             agent {
 		                   docker { image 'nginx:latest' }
+docker tag nginx:latest 074002960123.dkr.ecr.us-east-1.amazonaws.com/nginx:latest
+docker push 074002960123.dkr.ecr.us-east-1.amazonaws.com/nginx:latest
                                     }
 
                               steps {
@@ -31,8 +33,6 @@ pipeline {
                            }
                  stage('Prod') {
                      steps {
-                         docker tag nginx:latest 074002960123.dkr.ecr.us-east-1.amazonaws.com/nginx:latest
-docker push 074002960123.dkr.ecr.us-east-1.amazonaws.com/nginx:latest
                                 echo "App is Prod Ready"
                               }
 
