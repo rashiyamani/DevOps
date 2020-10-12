@@ -31,6 +31,8 @@ pipeline {
                            }
                  stage('Prod') {
                      steps {
+                         docker tag rashiyatest:latest 074002960123.dkr.ecr.us-east-1.amazonaws.com/rashiyatest:latest
+docker push 074002960123.dkr.ecr.us-east-1.amazonaws.com/rashiyatest:latest
                                 echo "App is Prod Ready"
                               }
 
