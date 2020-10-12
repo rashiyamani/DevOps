@@ -20,13 +20,16 @@ pipeline {
                            }
                             stage('Deploying now') {
                                
-                             steps { 
-                                 sh 'build.sh' 
+                             steps {
+                                 script { 
+                                 sh 'build.sh'
+                                 } 
                                } 
 
                               steps {
                                 echo "Docker Created"
                               }
+                           }
                            }
                            }
                  stage('Prod') {
