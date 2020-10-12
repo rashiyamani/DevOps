@@ -5,9 +5,9 @@ echo "==========================="
 
 APP_NAME=rashiya100test
 ECS_REPOSITORY=074002960123.dkr.ecr.us-east-1.amazonaws.com
-BUILD_NUMBER=12
+BUILD_NUMBER=${BUILD_NUMBER}
 #------------------------------------------------------------------------------
-APP_TAG=$APP_NAME
+APP_TAG=$APP_NAME-${BUILD_NUMBER}
 
 APP_DOCKER_IMAGE_NAME=$ECS_REPOSITORY/$APP_TAG
 
@@ -27,6 +27,6 @@ $(aws ecr get-login --no-include-email --region us-east-1)
 echo "Pushing new image $DOCKER_IMAGE_NAME to ECR"
 
 docker push $ECS_REPOSITORY/$APP_NAME
-
+docker rmi $ECS_REPOSITORY/$APP_NAME
 echo "--------------------------------------------------"
 echo "Build ended"
